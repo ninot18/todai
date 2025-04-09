@@ -1,0 +1,89 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import "@/styles/global.css";
+import Background from '@/components/Background.astro';
+import Hero from '@/components/shared/Hero.astro';
+import NavBar from '@/components/shared/NavBar.astro';
+
+
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+
+const currentPath = Astro.url.pathname;
+const showHero = currentPath === "/";
+---
+
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>
+      {title}
+    </title>
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <link
+      rel="preload"
+      href="/images/hero.avif"
+      as="image"
+      type="image/avif"
+      crossorigin="anonymous"
+    />
+
+    <!-- Preload de las fuentes para que no se vea el cambio de fuente al cargar la pagina -->
+    <link
+      rel="preload"
+      href="/fonts/atkinson-regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      href="/fonts/atkinson-bold.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+
+    <meta
+      name="description"
+      content="Blog y Reseñas de Lorena Jordán"
+    />
+
+    <meta property="og:url" content="https://www.lorejordan.es" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="El Blog de Lore Jordán" />
+    <meta
+      property="og:description"
+      content="Blog y Reseñas de Lorena Jordán, dónde se exploran vivencias, autoconocimientos y reseñas de libros."
+    />
+    <meta property="og:image" content="https://www.lorejordan.es/lore.png" />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:site_name" content="El Blog de Lore Jordán" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@lorejordan" />
+    <meta name="twitter:creator" content="@lorejordan" />
+    <meta name="twitter:title" content="El Blog de Lore Jordán" />
+    <meta
+      name="twitter:description"
+      content="Blog y Reseñas de Lorena Jordán, donde se exploran vivencias, autoconocimientos y reseñas de libros."
+    />
+    <ClientRouter />
+  </head>
+  <body class="flex flex-col items-center px-4 sm:px-6 md:px-12 lg:px-20 xl:px-32">
+    <Background />
+    {showHero && <Hero />}
+    <NavBar />
+    <slot />
+  </body>
+</html>
+
+

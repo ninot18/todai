@@ -1,0 +1,19 @@
+---
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('review')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+const latestPost = posts[0];
+---
+<section class="mt-4 flex flex-col items-center">
+    <h1 class="mb-2">Última reseña</h1>
+    <section>
+      <a href={`/blog/${latestPost.id}/`} class="block">
+        <img width={520} height={260} src={latestPost.data.heroImage} alt="" class="rounded-md" />
+        <h4 class="title">{latestPost.data.title}</h4>
+        <p class="date">{latestPost.data.pubDate.toLocaleDateString()}</p>
+      </a>
+    </section>
+  </section>

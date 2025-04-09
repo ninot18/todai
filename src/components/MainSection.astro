@@ -1,0 +1,17 @@
+---
+import RecentBlogPosts from "@/components/blog/RecentBlogPosts.astro";
+import Footer from "@/components/shared/Footer.astro";
+import RecentReviewsPosts from "@/components/reviews/RecentReviewsPosts.astro";
+import WhoAmI from "@/components/WhoAmI.astro";
+---
+
+<section class="flex flex-col-reverse md:flex-row gap-2 justify-center mt-4 break-words">
+    <section class="w-full md:w-[70%] min-w-0 flex-wrap">
+      <RecentBlogPosts />
+      <!-- <RecentReviewsPosts /> -->
+      <Footer />
+    </section>
+    <aside class="w-full md:w-[30%] min-w-0 flex-wrap">
+      <WhoAmI />
+    </aside>
+  </section>
